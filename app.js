@@ -20,6 +20,9 @@ const userSchema = new mongoose.Schema ({
   password: String
 }) ;
 
+const secret = "stringforalgo";
+userSchema.plugin(encrypt, {secret: secret, encryptedFields: ['password']});
+
 const User = new mongoose.model('User', userSchema);
 
 app.get('/', function(req, res){
@@ -44,7 +47,7 @@ app.post('/register', function(req, res){
       if (err) {
         console.log(err)
       } else {
-        res.render('se crets')
+        res.render('secrets')
       }
     })
   }
